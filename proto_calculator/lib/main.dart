@@ -72,25 +72,24 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   void addText(String text) {
+    List<String> list = ["+", "-", "/", "*"];
     if (text == "=") {
-      myController.text = myController.text.interpret().toString();
+      try {
+        myController.text = myController.text.interpret().toString();
+      } catch (e) {
+        myController.text = "";
+      }
       return;
-    }
-    if(text == "CLEAR"){
+    } else if (text == "CLEAR") {
       myController.text = "";
       return;
-    }
-    if (!reset) {
+    } else if (!reset) {
       myController.text = myController.value.text + text;
       return;
-    }
-    List<String> list = ["+", "-", "/", "*"];
-    for (var item in list) {
-      if (item == text) {
-        myController.text = myController.value.text + text;
-        reset = false;
-        return;
-      }
+    } else if (list.contains(text)) {
+      myController.text = myController.value.text + text;
+      reset = false;
+      return;
     }
     myController.text = text;
     reset = false;
