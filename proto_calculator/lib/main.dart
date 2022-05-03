@@ -52,8 +52,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final myController = TextEditingController();
   bool reset = false;
+  List<String> icon = [
+    "7",
+    "8",
+    "9",
+    "*",
+    "4",
+    "5",
+    "6",
+    "/",
+    "1",
+    "2",
+    "3",
+    "-",
+    "CLEAR",
+    "0",
+    "=",
+    "+"
+  ];
 
   void addText(String text) {
+    if (text == "=") {
+      myController.text = myController.text.interpret().toString();
+      return;
+    }
     if (!reset) {
       myController.text = myController.value.text + text;
       return;
@@ -68,10 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     myController.text = text;
     reset = false;
-  }
-
-  void calculate() {
-    myController.text = myController.text.interpret().toString();
   }
 
   @override
@@ -100,223 +118,20 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisCount: 4,
               childAspectRatio: 3,
               children: [
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      addText("7");
-                    });
-                  },
-                  child: const Text(
-                    "7",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
+                for (var i = 0; i < icon.length; i++)
+                  TextButton(
+                    onPressed: () {
+                      addText(icon[i]);
+                    },
+                    child: Text(
+                      icon[i],
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("8");
-                  },
-                  child: const Text(
-                    "8",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("9");
-                  },
-                  child: const Text(
-                    "9",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("*");
-                  },
-                  child: const Text(
-                    "*",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("4");
-                  },
-                  child: const Text(
-                    "4",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("5");
-                  },
-                  child: const Text(
-                    "5",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("6");
-                  },
-                  child: const Text(
-                    "6",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("/");
-                    // Respond to button press
-                  },
-                  child: const Text(
-                    "/",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("1");
-                    // Respond to button press
-                  },
-                  child: const Text(
-                    "1",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("2");
-                  },
-                  child: const Text(
-                    "2",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("3");
-                  },
-                  child: const Text(
-                    "3",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("-");
-                  },
-                  child: const Text(
-                    "-",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    myController.text = "";
-                  },
-                  child: const Text(
-                    "CLEAR",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("0");
-                  },
-                  child: const Text(
-                    "0",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    try {
-                      calculate();
-                      reset = true;
-                    } catch (e) {
-                      myController.text = "";
-                    }
-                  },
-                  child: const Text(
-                    "=",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    addText("+");
-                  },
-                  child: const Text(
-                    "+",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
               ],
             ),
           )
