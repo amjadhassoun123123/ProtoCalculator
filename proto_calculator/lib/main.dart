@@ -76,6 +76,10 @@ class _MyHomePageState extends State<MyHomePage> {
       myController.text = myController.text.interpret().toString();
       return;
     }
+    if(text == "CLEAR"){
+      myController.text = "";
+      return;
+    }
     if (!reset) {
       myController.text = myController.value.text + text;
       return;
