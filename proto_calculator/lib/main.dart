@@ -76,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (text == "=") {
       try {
         myController.text = myController.text.interpret().toString();
+        reset = true;
       } catch (e) {
         myController.text = "";
       }
