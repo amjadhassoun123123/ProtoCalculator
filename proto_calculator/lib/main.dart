@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
       }
       return;
     } else if (icon == "CLEAR") {
-      text = "OoooooOOooooOO math stuff";
+      text = "";
       return;
     } else if (!reset) {
       text = text + icon;
