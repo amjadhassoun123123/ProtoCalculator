@@ -121,24 +121,23 @@ class _MyHomePageState extends State<MyHomePage> {
             child: GridView.count(
               crossAxisCount: 4,
               childAspectRatio: 3,
-              children: [
-                for (var i = 0; i < icon.length; i++)
-                  TextButton(
+              children: 
+                icon.map( (i) { return
+                   TextButton(
                     onPressed: () {
-                      addText(icon[i]);
+                      addText(i);
                     },
                     child: Text(
-                      icon[i],
+                      i,
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-              ],
+                  ); }).toList(),
             ),
-          )
+          ) 
         ],
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
