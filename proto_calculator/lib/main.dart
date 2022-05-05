@@ -50,9 +50,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final myController = TextEditingController();
+  String text = "";
   bool reset = false;
-  List<String> icon = [
+  List<String> icons = [
     "7",
     "8",
     "9",
@@ -71,28 +71,28 @@ class _MyHomePageState extends State<MyHomePage> {
     "+"
   ];
 
-  void addText(String text) {
+  void addText(String icon) {
     List<String> list = ["+", "-", "/", "*"];
-    if (text == "=") {
+    if (icon == "=") {
       try {
-        myController.text = myController.text.interpret().toString();
+        text = text.interpret().toString();
         reset = true;
       } catch (e) {
-        myController.text = "";
+        text = "";
       }
       return;
-    } else if (text == "CLEAR") {
-      myController.text = "";
+    } else if (icon == "CLEAR") {
+      text = "OoooooOOooooOO math stuff";
       return;
     } else if (!reset) {
-      myController.text = myController.value.text + text;
+      text = text + icon;
       return;
-    } else if (list.contains(text)) {
-      myController.text = myController.value.text + text;
+    } else if (list.contains(icon)) {
+      text = text + icon;
       reset = false;
       return;
     }
-    myController.text = text;
+    text = icon;
     reset = false;
   }
 
@@ -107,37 +107,47 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Column(
         children: [
-          TextField(
-            textAlign: TextAlign.right,
+          //use provider to communicate w text field?
+          Text(
+            text,
             style:
                 const TextStyle(fontSize: 50, color: Colors.deepPurpleAccent),
-            decoration: const InputDecoration(
-              labelText: 'OoooooOOooooOO math stuff',
-            ),
-            controller: myController,
-            readOnly: true,
           ),
+
+          //Old implementation using controller
+          // TextField(
+          //   textAlign: TextAlign.right,
+          //   style:
+          //       const TextStyle(fontSize: 50, color: Colors.deepPurpleAccent),
+          //   decoration: const InputDecoration(
+          //     labelText: 'OoooooOOooooOO math stuff',
+          //   ),
+          //   controller: myController,
+          //   readOnly: true,
+          // ),
           Expanded(
             child: GridView.count(
               crossAxisCount: 4,
               childAspectRatio: 3,
-              children: 
-                icon.map( (i) { return
-                   TextButton(
-                    onPressed: () {
-                      addText(i);
-                    },
-                    child: Text(
-                      i,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
+              children: icons.map((icon) {
+                return TextButton(
+                  onPressed: () {
+                    setState(() {
+                      addText(icon);
+                    });
+                  },
+                  child: Text(
+                    icon,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ); }).toList(),
+                  ),
+                );
+              }).toList(),
             ),
-          ) 
+          )
         ],
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
