@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:function_tree/function_tree.dart';
 
-class Input with ChangeNotifier {
+class Inputter with ChangeNotifier {
   String _input = "";
   bool reset = false;
   String get input => _input;

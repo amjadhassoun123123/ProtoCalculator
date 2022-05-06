@@ -7,7 +7,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => Input()),
+        ChangeNotifierProvider(create: (_) => Inputter()),
       ],
       child: const MyApp(),
     ),

@@ -16,7 +16,7 @@ class CalculatorPage extends StatelessWidget {
   // always marked "final".
 
   final String title;
-  
+
   List<String> icons = [
     "7",
     "8",
@@ -47,12 +47,7 @@ class CalculatorPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          //use provider to communicate w text field?
-          Text(
-            context.watch<Input>().input,
-            style:
-                const TextStyle(fontSize: 50, color: Colors.deepPurpleAccent),
-          ),
+          const Input(),
           Expanded(
             child: GridView.count(
               crossAxisCount: 4,
@@ -60,7 +55,7 @@ class CalculatorPage extends StatelessWidget {
               children: icons.map((icon) {
                 return TextButton(
                   onPressed: () {
-                    context.read<Input>().addText(icon);
+                    context.read<Inputter>().addText(icon);
                   },
                   child: Text(
                     icon,
@@ -78,5 +73,15 @@ class CalculatorPage extends StatelessWidget {
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+}
+
+class Input extends StatelessWidget {
+  const Input({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(context.watch<Inputter>().input,
+        style: const TextStyle(fontSize: 50, color: Colors.deepPurpleAccent));
   }
 }
