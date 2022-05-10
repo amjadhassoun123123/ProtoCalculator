@@ -6,7 +6,6 @@ import '../calculate.dart';
 // ignore: must_be_immutable
 class CalculatorView extends StatelessWidget {
   CalculatorView({Key? key, required this.title}) : super(key: key);
-
   final String title;
 
   List<String> icons = [
@@ -30,22 +29,19 @@ class CalculatorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+
     return Scaffold(
       body: Column(
         children: [
           BlocBuilder<CalculateCubit, String>(builder: (context, state) {
-            return Text(state, style: const TextStyle(fontSize: 50, color: Colors.deepPurpleAccent));
+            return Text(state,
+                style: const TextStyle(
+                    fontSize: 45, color: Colors.deepPurpleAccent));
           }),
           Expanded(
             child: GridView.count(
               crossAxisCount: 4,
-              childAspectRatio: 3,
+              childAspectRatio: 2,
               children: icons.map((icon) {
                 return TextButton(
                   onPressed: () {
@@ -55,14 +51,14 @@ class CalculatorView extends StatelessWidget {
                     icon,
                     style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 25,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 );
               }).toList(),
             ),
-          )
+          ),
         ],
       ),
       // This trailing comma makes auto-formatting nicer for build methods.

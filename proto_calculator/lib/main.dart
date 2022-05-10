@@ -1,12 +1,15 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:proto_calculator/login/login_page.dart';
 
-import 'app.dart';
-import 'input_observer.dart';
+
 
 void main() {
-  BlocOverrides.runZoned(
-    () => runApp(const CalculatorApp()),
-    blocObserver:   InputObserver(),
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );  
+  runApp(LoginPage());
+  // BlocOverrides.runZoned(
+  //   () => runApp(const CalculatorApp()),
+  //   blocObserver: InputObserver(),
+  // );
 }
