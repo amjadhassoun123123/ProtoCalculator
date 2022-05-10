@@ -23,33 +23,39 @@ class LoginPage extends StatelessWidget {
                   label: Text("click me"),
                 );
               } else {
-                return calcBody();
+                return calcBody(context);
               }
             })));
   }
 
-  Widget calcBody() {
-    return Scaffold(
-        body: GridView.count(
-          childAspectRatio: 3/2,
-          physics: NeverScrollableScrollPhysics(),
-          crossAxisCount: 1,
-          mainAxisSpacing: 5,
-            children: [
-          const CalculatorPage(),
-          
-          TextButton(
-            onPressed: () {
-              controller.login();
-            },
-            child: Text("Signout"),
-          ),Text("Signout"),
-        ]));
+  // TextButton(
+  //   onPressed: () {
+  //     controller.login();
+  //   },
+  //   child: Text("Signout"),
+  // ),
+  // Text("Signout"),
+  Widget calcBody(context) {
+ return Column(children: [
+        const Flexible(
+          child: CalculatorPage(),
+        ),
+        TextButton(
+          onPressed: () {  
+          },
+          child: const Text(
+            "Signout",
+            style: TextStyle(fontSize: 30),
+          ),
+        ),
+      ]);
+
   }
+  void _navigateToNextScreen(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+  }
+
 }
-
-
-
 // Center(child: Obx(() {
 //               if (controller.googleAccount.value == null) {
 //                 return buildLoginButton();
@@ -60,3 +66,4 @@ class LoginPage extends StatelessWidget {
 //                         builder: (context) => const CalculatorPage()));
 //               }
 //             }
+
