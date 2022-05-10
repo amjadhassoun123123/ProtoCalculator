@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:proto_calculator/login/login_controller.dart';
 
 import '../calculate/view/calculator_page.dart';
-import '../calculate/view/calculator_view.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -20,7 +19,7 @@ class LoginPage extends StatelessWidget {
                     controller.login();
                     if (controller.googleAccount.value != null) {}
                   },
-                  label: Text("click me"),
+                  label: const Text("click me"),
                 );
               } else {
                 return calcBody(context);
