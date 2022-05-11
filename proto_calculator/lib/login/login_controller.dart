@@ -10,6 +10,8 @@ import '../calculate/view/calculator_page.dart';
 class LoginController extends GetxController {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  late GoogleSignInAccount account;
+  String name = "";
 
   void signInWithGoogle(context) async {
     await _googleSignIn.signOut();
@@ -24,6 +26,11 @@ class LoginController extends GetxController {
     _firebaseAuth.currentUser!;
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const CalculatorPage()));
+
+    account =  _googleSignIn.currentUser!;
+    if (account.displayName != null){
+      name = account.displayName!;
+    }
   }
 
   Future<User> signInWithApple(BuildContext context) async {

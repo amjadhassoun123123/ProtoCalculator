@@ -30,7 +30,6 @@ class CalculatorView extends StatelessWidget {
     "=",
     "+"
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +62,8 @@ class CalculatorView extends StatelessWidget {
               }).toList(),
             ),
           ),
+          Text(controller.account.email),
+           Text(controller.name),
           TextButton(
               onPressed: () {
                 Navigator.pop(context);
