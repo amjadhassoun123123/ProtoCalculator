@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:proto_calculator/login/login_controller.dart';
 
 import '../calculate.dart';
 
@@ -7,6 +10,7 @@ import '../calculate.dart';
 class CalculatorView extends StatelessWidget {
   CalculatorView({Key? key, required this.title}) : super(key: key);
   final String title;
+  final LoginController controller = Get.find();
 
   List<String> icons = [
     "7",
@@ -29,8 +33,8 @@ class CalculatorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+      appBar: AppBar(title: const Text("Online Calculator")),
       body: Column(
         children: [
           BlocBuilder<CalculateCubit, String>(builder: (context, state) {
@@ -59,6 +63,12 @@ class CalculatorView extends StatelessWidget {
               }).toList(),
             ),
           ),
+          TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                controller.signOut();
+              },
+              child: const Text("Signout")),
         ],
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
