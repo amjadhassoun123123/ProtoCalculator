@@ -11,12 +11,16 @@ class LoginPage extends StatelessWidget {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(title: const Text("Online Calculator")),
-            body: Column(mainAxisAlignment: MainAxisAlignment.center,children: [Center(
-                child: SignInButton(
-              Buttons.Google,
-              onPressed: () {
+            body:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Center(
+                  child: SignInButton(Buttons.Google, onPressed: () {
                 controller.signInWithGoogle(context);
-              }
-            ))])));
+              })),
+              Center(
+                  child: SignInButton(Buttons.Apple, onPressed: () {
+                controller.signInWithApple(context);
+              }))
+            ])));
   }
 }
