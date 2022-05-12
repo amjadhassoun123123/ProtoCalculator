@@ -66,7 +66,6 @@ class LoginController extends GetxController {
       idToken: appleCredential.identityToken,
       rawNonce: rawNonce,
     );
-
     // Sign in the user with Firebase. If the nonce we generated earlier does
     // not match the nonce in `appleCredential.identityToken`, sign in will fail.
     await _firebaseAuth.signInWithCredential(oauthCredential);

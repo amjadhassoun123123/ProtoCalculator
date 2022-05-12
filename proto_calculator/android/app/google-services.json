@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "164321630854-vens6akghspnru24jdnnk1n2thimb8fm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proto_calculator",
+            "certificate_hash": "fd9ddafa5396d3475bfdd4e603c9f2c899508216"
+          }
+        },
+        {
           "client_id": "164321630854-eet84v0iscvptlji586sv8o2vnf01u52.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -31,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "164321630854-d526qik4rssphofdvkn37h58jv9nl76h.apps.googleusercontent.com",
+              "client_id": "164321630854-1trhp19phrm2enl8hdbo9gfvkcn7iri6.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.protoCalculator"
+                "bundle_id": "co.spurry.calculator.fluttersignin"
               }
             }
           ]

@@ -16,7 +16,7 @@ class CalculatorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => CalculateCubit(),
-      child: CalculatorView(title: '',),
+      child: const CalculatorView(title: '',),
     );
   }
 }
