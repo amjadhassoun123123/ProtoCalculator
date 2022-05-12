@@ -60,7 +60,7 @@ class _MyStatefulWidgetState extends State<CalculatorView> {
                   child: GridView.count(
                     physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 4,
-                childAspectRatio: 3,
+                childAspectRatio: 2,
                 children: icons.map((icon) {
                   return TextButton(
                     onPressed: () {
@@ -90,7 +90,7 @@ class _MyStatefulWidgetState extends State<CalculatorView> {
                         shrinkWrap: true,
                         itemCount: calculations.length,
                         itemBuilder: (context, index) {
-                          return Text(calculations[index]);
+                          return Text(calculations[index], style: const TextStyle(fontSize: 10, fontStyle: FontStyle.italic),);
                         },
                       ));
                 });

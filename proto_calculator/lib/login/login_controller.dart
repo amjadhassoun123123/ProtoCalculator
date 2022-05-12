@@ -14,6 +14,7 @@ class LoginController extends GetxController {
   String name = "";
   String email = "";
   String iconUrl = "";
+  String uid = "";
 
   void signInWithGoogle(context) async {
     name = "";
@@ -34,6 +35,7 @@ class LoginController extends GetxController {
     name = _googleSignIn.currentUser!.displayName!;
     email = _googleSignIn.currentUser!.email;
     iconUrl = _googleSignIn.currentUser!.photoUrl!;
+    uid = _firebaseAuth.currentUser!.uid;
   }
 
   String sha256ofString(String input) {
@@ -79,6 +81,7 @@ class LoginController extends GetxController {
     }
 
     email = _firebaseAuth.currentUser!.email!;
+    uid = _firebaseAuth.currentUser!.uid;
   }
 
   void signOut() async {
