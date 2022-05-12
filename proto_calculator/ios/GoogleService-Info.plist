@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>164321630854-k8s6pjb3l4dl66dfr23dcsdc70e27it4.apps.googleusercontent.com</string>
+	<string>164321630854-1trhp19phrm2enl8hdbo9gfvkcn7iri6.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.164321630854-k8s6pjb3l4dl66dfr23dcsdc70e27it4</string>
+	<string>com.googleusercontent.apps.164321630854-1trhp19phrm2enl8hdbo9gfvkcn7iri6</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBXUSJMh0hJOBvLABVWmVcRyFsXw6iTZbY</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,22 +13,22 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.calculator.fluttersignin</string>
+	<string>co.spurry.calculator.fluttersignin</string>
 	<key>PROJECT_ID</key>
 	<string>calculator-6e832</string>
 	<key>STORAGE_BUCKET</key>
 	<string>calculator-6e832.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:164321630854:ios:11e68476b522ea03128f07</string>
+	<string>1:164321630854:ios:e7e9326cbdd88401128f07</string>
 </dict>
 </plist>

@@ -62,8 +62,8 @@ class CalculatorView extends StatelessWidget {
               }).toList(),
             ),
           ),
-          Text(controller.account.email),
-           Text(controller.name),
+          Text(controller.name),
+          Text(controller.email),
           TextButton(
               onPressed: () {
                 Navigator.pop(context);

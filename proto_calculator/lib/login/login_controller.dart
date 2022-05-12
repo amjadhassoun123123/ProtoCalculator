@@ -3,17 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:proto_calculator/calculate/view/calculator_view.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:the_apple_sign_in/the_apple_sign_in.dart';
-
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
 import '../calculate/view/calculator_page.dart';
 
 class LoginController extends GetxController {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  late GoogleSignInAccount account;
+
   String name = "";
+  String email = "";
+  String iconUrl = "";
 
   void signInWithGoogle(context) async {
+    name = "";
+    email = "";
     await _googleSignIn.signOut();
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth =
@@ -27,54 +34,55 @@ class LoginController extends GetxController {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const CalculatorPage()));
 
-    account =  _googleSignIn.currentUser!;
-    if (account.displayName != null){
-      name = account.displayName!;
-    }
+    name = _googleSignIn.currentUser!.displayName!;
+    email = _googleSignIn.currentUser!.email;
+    iconUrl = _googleSignIn.currentUser!.photoUrl!;
   }
 
-  Future<User> signInWithApple(BuildContext context) async {
-    List<Scope> scopes = const [];
-    // 1. perform the sign-in request
-    final result = await TheAppleSignIn.performRequests(
-        [AppleIdRequest(requestedScopes: scopes)]);
-    // 2. check the result
-    switch (result.status) {
-      case AuthorizationStatus.authorized:
-        final appleIdCredential = result.credential!;
-        final oAuthProvider = OAuthProvider('apple.com');
-        final credential = oAuthProvider.credential(
-          idToken: String.fromCharCodes(appleIdCredential.identityToken!),
-          accessToken:
-              String.fromCharCodes(appleIdCredential.authorizationCode!),
-        );
-        final userCredential =
-            await _firebaseAuth.signInWithCredential(credential);
-        final firebaseUser = userCredential.user!;
-        if (scopes.contains(Scope.fullName)) {
-          final fullName = appleIdCredential.fullName;
-          if (fullName != null &&
-              fullName.givenName != null &&
-              fullName.familyName != null) {
-            final displayName = '${fullName.givenName} ${fullName.familyName}';
-            await firebaseUser.updateDisplayName(displayName);
-          }
-        }
-        return firebaseUser;
-      case AuthorizationStatus.error:
-        throw PlatformException(
-          code: 'ERROR_AUTHORIZATION_DENIED',
-          message: result.error.toString(),
-        );
+  String sha256ofString(String input) {
+    final bytes = utf8.encode(input);
+    final digest = sha256.convert(bytes);
+    return digest.toString();
+  }
 
-      case AuthorizationStatus.cancelled:
-        throw PlatformException(
-          code: 'ERROR_ABORTED_BY_USER',
-          message: 'Sign in aborted by user',
-        );
-      default:
-        throw UnimplementedError();
+  void signInWithApple(BuildContext context) async {
+    name = "";
+    email = "";
+    // To prevent replay attacks with the credential returned from Apple, we
+    // include a nonce in the credential request. When signing in with
+    // Firebase, the nonce in the id token returned by Apple, is expected to
+    // match the sha256 hash of `rawNonce`.
+    final rawNonce = generateNonce();
+    final nonce = sha256ofString(rawNonce);
+
+    // Request credential for the currently signed in Apple account.
+    final appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      nonce: nonce,
+    );
+
+    // Create an `OAuthCredential` from the credential returned by Apple.
+    final oauthCredential = OAuthProvider("apple.com").credential(
+      idToken: appleCredential.identityToken,
+      rawNonce: rawNonce,
+    );
+
+    // Sign in the user with Firebase. If the nonce we generated earlier does
+    // not match the nonce in `appleCredential.identityToken`, sign in will fail.
+    await _firebaseAuth.signInWithCredential(oauthCredential);
+    _firebaseAuth.currentUser!;
+    // return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const CalculatorPage()));
+
+    if (_firebaseAuth.currentUser!.displayName != null) {
+      name = _firebaseAuth.currentUser!.displayName!;
     }
+
+    email = _firebaseAuth.currentUser!.email!;
   }
 
   void signOut() async {
@@ -82,5 +90,7 @@ class LoginController extends GetxController {
       _firebaseAuth.signOut(),
       _googleSignIn.signOut(),
     ]);
+    name = "";
+    email = "";
   }
 }
