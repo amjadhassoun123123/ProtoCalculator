@@ -6,6 +6,8 @@
 	<string>164321630854-1trhp19phrm2enl8hdbo9gfvkcn7iri6.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
 	<string>com.googleusercontent.apps.164321630854-1trhp19phrm2enl8hdbo9gfvkcn7iri6</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>164321630854-vens6akghspnru24jdnnk1n2thimb8fm.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBXUSJMh0hJOBvLABVWmVcRyFsXw6iTZbY</string>
 	<key>GCM_SENDER_ID</key>
@@ -19,16 +21,18 @@
 	<key>STORAGE_BUCKET</key>
 	<string>calculator-6e832.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:164321630854:ios:e7e9326cbdd88401128f07</string>
+	<key>DATABASE_URL</key>
+	<string>https://calculator-6e832-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>
