@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:function_tree/function_tree.dart';
 import 'package:get/get.dart';
@@ -11,7 +11,6 @@ import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 class CalculateCubit extends Cubit<String> {
   final ScrollController _scrollController = Get.find();
 
-  /// {@macro counter_cubit}
   CalculateCubit() : super("");
   bool reset = false;
 
@@ -46,12 +45,27 @@ class CalculateCubit extends Cubit<String> {
               curve: Curves.fastOutSlowIn);
 
           //update database
-          DatabaseReference ref = FirebaseDatabase.instance.ref("Users");
-          DatabaseReference calculations = ref.child(preferences.getString("uid", defaultValue: "Unknown User").getValue());
-          calculations.update({
+          var db = FirebaseFirestore.instance;
+
+          final user = <String, dynamic>{
             now.toLocal().toString().split('.')[0]:
-                state + " " + "=" + " " + answer
-          });
+                state + " " + "=" + " " + answer,
+          };
+          db
+              .collection("Users")
+              .doc(preferences
+                  .getString("uid", defaultValue: "Unknown User")
+                  .getValue())
+              .set(user, SetOptions(merge: true));
+
+          // DatabaseReference ref = FirebaseDatabase.instance.ref("Users");
+          // DatabaseReference calculations = ref.child(preferences
+          //     .getString("uid", defaultValue: "Unknown User")
+          //     .getValue());
+          // calculations.update({
+          //   now.toLocal().toString().split('.')[0]:
+          //       state + " " + "=" + " " + answer
+          // });
         }
         reset = true;
         emit(answer);
