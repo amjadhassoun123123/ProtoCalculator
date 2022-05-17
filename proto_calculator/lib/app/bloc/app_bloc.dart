@@ -16,7 +16,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       _prefs = prefs,
         super(
           authenticationRepository.currentUser.isNotEmpty
-              ? AppState.authenticated(authenticationRepository.currentUser)
+              ? AppState.freshOpen(authenticationRepository.currentUser)
               : const AppState.unauthenticated(),
         ) {
     on<AppUserChanged>(_onUserChanged);

@@ -1,4 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart' as bob;
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +14,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  final StreamingSharedPreferences prefs = await StreamingSharedPreferences.instance;
+  final StreamingSharedPreferences prefs =
+      await StreamingSharedPreferences.instance;
   Get.put(prefs);
   final authenticationRepository = AuthenticationRepository();
   await authenticationRepository.user.first;

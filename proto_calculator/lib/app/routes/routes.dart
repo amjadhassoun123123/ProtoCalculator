@@ -1,8 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:proto_calculator/app/bloc/app_bloc.dart';
 import 'package:proto_calculator/calculate/view/calculator_page.dart';
 import 'package:proto_calculator/login/view/login_page.dart';
-
 
 List<Page> onGenerateAppViewPages(AppStatus state, List<Page<dynamic>> pages) {
   switch (state) {
@@ -10,5 +10,7 @@ List<Page> onGenerateAppViewPages(AppStatus state, List<Page<dynamic>> pages) {
       return [CalculatorPage.page()];
     case AppStatus.unauthenticated:
       return [LoginPage.page()];
+    case AppStatus.freshOpen:
+      return [CalculatorPage.page()];
   }
 }

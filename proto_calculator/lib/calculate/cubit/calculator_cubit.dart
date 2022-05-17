@@ -46,6 +46,12 @@ class CalculateCubit extends Cubit<String> {
 
           //update database
           var db = FirebaseFirestore.instance;
+          db.settings = const Settings(persistenceEnabled: true);
+
+          //this setting for pc wont work??
+
+          // await db.enablePersistence(
+          //     const PersistenceSettings(synchronizeTabs: true));
 
           final user = <String, dynamic>{
             now.toLocal().toString().split('.')[0]:

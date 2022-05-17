@@ -18,3 +18,15 @@ class AppUserChanged extends AppEvent {
   @override
   List<Object> get props => [user];
 }
+
+
+class AppOpened extends AppEvent {
+  @visibleForTesting
+  const AppOpened(this.user);
+
+  final User user;
+
+  @override
+  List<Object> get props => [user];
+  
+}
