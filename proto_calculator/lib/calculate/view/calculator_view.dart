@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
-import 'package:proto_calculator/login/login_controller.dart';
+import 'package:proto_calculator/login/cubit/login_controller.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 import '../calculate.dart';
@@ -20,7 +20,7 @@ class CalculatorView extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<CalculatorView> {
   final ScrollController _scrollController = Get.put(ScrollController());
-  final LoginController _loginController = Get.find();
+  final LoginController _loginController = LoginController();
   final StreamingSharedPreferences prefs = Get.find();
   List<String> icons = [
     "7",
@@ -95,18 +95,6 @@ class _MyStatefulWidgetState extends State<CalculatorView> {
                       ));
                 });
           }),
-          // return FutureBuilder<List<String>>(
-          //   future: prefs,
-          //   builder: (context, snapshot) {
-          //     if (snapshot.hasData) {
-
-          //               ],
-          //             );
-          //           });
-          //     }
-          //     return CircularProgressIndicator(); // or some other widget
-          //   },
-          // );
           SizedBox(
               height: MediaQuery.of(context).size.height / 5,
               child: Column(

@@ -49,6 +49,13 @@ dependencies:
   streaming_shared_preferences: ^2.0.0
   firebase_database: ^9.0.13
   cloud_firestore: ^3.1.14
+  formz: ^0.4.1
+  form_inputs:
+    path: packages/form_inputs
+  authentication_repository:
+    path: packages/authentication_repository
+  connectivity_plus: ^2.3.0
+  flow_builder: ^0.0.8
 
 dev_dependencies:
   flutter_test:

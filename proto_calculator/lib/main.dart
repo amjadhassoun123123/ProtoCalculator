@@ -1,9 +1,10 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proto_calculator/login/login_page.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
+import 'app/view/app.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -11,11 +12,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  StreamingSharedPreferences prefs = await StreamingSharedPreferences.instance;
+  final StreamingSharedPreferences prefs = await StreamingSharedPreferences.instance;
   Get.put(prefs);
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: 'Navigation Basics',
-    home: LoginPage(),
-  ));
+  final authenticationRepository = AuthenticationRepository();
+  await authenticationRepository.user.first;
+  runApp(App(authenticationRepository: authenticationRepository, prefs: prefs));
 }

@@ -11,6 +11,7 @@ import 'calculator_view.dart';
 class CalculatorPage extends StatelessWidget {
   /// {@macro counter_page}
   const CalculatorPage({Key? key}) : super(key: key);
+  static Page page() => const MaterialPage<void>(child: CalculatorPage());
 
   @override
   Widget build(BuildContext context) {

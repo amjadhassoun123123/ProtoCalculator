@@ -3,7 +3,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:function_tree/function_tree.dart';
 import 'package:get/get.dart';
-import 'package:proto_calculator/login/login_controller.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 /// {@template calculate_cubit}
@@ -11,7 +10,6 @@ import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 /// {@endtemplate}
 class CalculateCubit extends Cubit<String> {
   final ScrollController _scrollController = Get.find();
-  final LoginController _loginController = Get.find();
 
   /// {@macro counter_cubit}
   CalculateCubit() : super("");
@@ -32,7 +30,6 @@ class CalculateCubit extends Cubit<String> {
           List<String>? prev = preferences
               .getStringList("data", defaultValue: <String>[""]).getValue();
           DateTime now = DateTime.now();
-          print(now.toLocal().toString().split('.')[0]);
           prev.add(now.toLocal().toString().split('.')[0] +
               " " +
               state +
@@ -50,13 +47,11 @@ class CalculateCubit extends Cubit<String> {
 
           //update database
           DatabaseReference ref = FirebaseDatabase.instance.ref("Users");
-          DatabaseReference calculations = ref.child(_loginController.uid);
-          calculations
-              .update({now.toLocal().toString().split('.')[0]: state +
-              " " +
-              "=" +
-              " " +
-              answer});
+          DatabaseReference calculations = ref.child(preferences.getString("uid", defaultValue: "Unknown User").getValue());
+          calculations.update({
+            now.toLocal().toString().split('.')[0]:
+                state + " " + "=" + " " + answer
+          });
         }
         reset = true;
         emit(answer);
