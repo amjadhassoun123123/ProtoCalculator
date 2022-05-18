@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -78,22 +76,38 @@ class LoginCubit extends Cubit<LoginState> {
   void syncData() async {
     FlutterSecureStorage storage = const FlutterSecureStorage();
     final anonUID = await storage.read(key: "uidAnon");
-
     final FirebaseFirestore db = FirebaseFirestore.instance;
     db.settings = const Settings(persistenceEnabled: true);
-    final docRef = db.collection("Users").doc(anonUID).collection("profile").doc("calculations");
+    final anonData = db.collection("Users").doc(anonUID).collection("profile");
+    final userData = db
+        .collection("Users")
+        .doc(await storage.read(key: "uid"))
+        .collection("profile");
 
-    docRef.get().then((value) async {
+    await anonData.doc("calculations").get().then((value) async {
       var data = value.data();
-      if (data == null) {
+      if (data == null || data.isEmpty) {
         return;
       }
-      db
-          .collection("Users")
-          .doc(await storage.read(key: "uid")).collection("profile").doc("calculations")
-          .set(data, SetOptions(merge: true));
-      db.collection("Users").doc(await storage.read(key: "uidAnon")).collection("profile").doc("calculations").set({});
+      await userData.doc("calculations").get();
+      await userData.doc("calculations").set(data, SetOptions(merge: true));
     });
+
+    await anonData.doc("settings").get().then((value) async {
+      var data = value.data();
+      if (data == null || data.isEmpty) {
+        return;
+      }
+      await userData.doc("settings").get();
+      await userData.doc("settings").set(data, SetOptions(merge: true));
+    });
+
+    await db
+        .collection("Users")
+        .doc(anonUID)
+        .collection("profile")
+        .doc("calculations")
+        .set({});
   }
 
   void setupDatabase(String uid) async {

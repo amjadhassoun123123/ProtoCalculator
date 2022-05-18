@@ -15,7 +15,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       {required AuthenticationRepository authenticationRepository,
       required FlutterSecureStorage prefs})
       : _authenticationRepository = authenticationRepository,
-        _prefs = prefs,
         super(
           authenticationRepository.currentUser.isNotEmpty
               ? AppState.authenticated(authenticationRepository.currentUser)
@@ -29,7 +28,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   final AuthenticationRepository _authenticationRepository;
-  final FlutterSecureStorage _prefs;
   late final StreamSubscription<User> _userSubscription;
 
   void _onUserChanged(AppUserChanged event, Emitter<AppState> emit) {
