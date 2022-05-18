@@ -3,7 +3,7 @@ part of 'app_bloc.dart';
 enum AppStatus {
   authenticated,
   unauthenticated,
-  freshOpen,
+  anon,
 }
 
 class AppState extends Equatable {
@@ -17,9 +17,8 @@ class AppState extends Equatable {
 
   const AppState.unauthenticated() : this._(status: AppStatus.unauthenticated);
 
-const AppState.freshOpen(User user)
-: this._(status: AppStatus.authenticated, user: user);
-  
+  const AppState.anon(User user) : this._(status: AppStatus.anon, user: user);
+
   final AppStatus status;
   final User user;
 

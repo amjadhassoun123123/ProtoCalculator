@@ -12,8 +12,7 @@ import 'package:crypto/crypto.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:uuid/uuid.dart';
-import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
-import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// {@template sign_up_with_email_and_password_failure}
 /// Thrown if during the sign up process if a failure occurs.
@@ -241,6 +240,7 @@ class AuthenticationRepository {
       }
 
       await _firebaseAuth.signInWithCredential(credential);
+
     } on FirebaseAuthException catch (e) {
       throw LogInWithGoogleFailure.fromCode(e.code);
     } catch (_) {
@@ -284,6 +284,7 @@ class AuthenticationRepository {
     // not match the nonce in `appleCredential.identityToken`, sign in will fail.
     await _firebaseAuth.signInWithCredential(oauthCredential);
     _firebaseAuth.currentUser!;
+
   }
 
   /// Signs in with the provided [email] and [password].
@@ -308,7 +309,7 @@ class AuthenticationRepository {
   Future<void> loginInAnon() async {
     if (await storage.read(key: "uidAnon") == null) {
       var uuid = const Uuid();
-      _prefs.write(key: "uid", value: uuid.v1());
+      await _prefs.write(key: "uid", value: uuid.v1());
       await storage.write(key: "uidAnon", value: uuid.v1());
     }
     _firebaseAuth.signOut();
@@ -329,6 +330,8 @@ class AuthenticationRepository {
       throw LogOutFailure();
     }
   }
+
+
 }
 
 extension on firebase_auth.User {

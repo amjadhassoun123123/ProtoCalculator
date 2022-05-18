@@ -9,7 +9,7 @@ List<Page> onGenerateAppViewPages(AppStatus state, List<Page<dynamic>> pages) {
       return [CalculatorPage.page()];
     case AppStatus.unauthenticated:
       return [LoginPage.page()];
-    case AppStatus.freshOpen:
+    case AppStatus.anon:
       return [CalculatorPage.page()];
   }
 }

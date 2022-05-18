@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -24,46 +22,22 @@ class CalculateCubit extends Cubit<String> {
         String answer = state.interpret().roundToDouble().toString();
         FlutterSecureStorage storage = const FlutterSecureStorage();
         if (!state.isNum) {
-          //get local data
-
-          //update local data
-          String? stringofitems = await storage.read(key: 'data');
-          List<dynamic> prev = <String>[""];
-          if (stringofitems != null && stringofitems.isNotEmpty) {
-            prev = json.decode(stringofitems);
-          }
           DateTime now = DateTime.now();
 
-          prev.add(now.toLocal().toString().split('.')[0] +
-              "|" +
-              state +
-              " " +
-              "=" +
-              " " +
-              answer);
+          var db = FirebaseFirestore.instance;
+          db.settings = const Settings(persistenceEnabled: true);
 
-          await storage.write(key: 'data', value: jsonEncode(prev));
+          final calculation = <String, dynamic>{
+            now.toLocal().toString().split('.')[0]:
+                state + " " + "=" + " " + answer,
+          };
 
-          //Animate scrolling of list
-          // _scrollController.animateTo(
-          //     _scrollController.position.maxScrollExtent,
-          //     duration: const Duration(milliseconds: 500),
-          //     curve: Curves.fastOutSlowIn);
-          //update database
-          if (await storage.read(key: 'uidAnon') == null) {
-            var db = FirebaseFirestore.instance;
-            db.settings = const Settings(persistenceEnabled: true);
-
-            final calculation = <String, dynamic>{
-              now.toLocal().toString().split('.')[0]:
-                  state + " " + "=" + " " + answer,
-            };
-
-            db
-                .collection("Users")
-                .doc(await storage.read(key: "uid"))
-                .set(calculation, SetOptions(merge: true));
-          }
+          db
+              .collection("Users")
+              .doc(await storage.read(key: "uid"))
+              .collection("profile")
+              .doc("calculations")
+              .set(calculation, SetOptions(merge: true));
         }
         reset = true;
         emit(answer);
