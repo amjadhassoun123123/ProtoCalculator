@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.proto_calculator">
    <application
+        android:allowBackup="true"
         android:label="proto_calculator"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

@@ -3,19 +3,18 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proto_calculator/app/app.dart';
-import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class App extends StatelessWidget {
   const App({
     Key? key,
     required AuthenticationRepository authenticationRepository,
-    required StreamingSharedPreferences prefs,
+    required FlutterSecureStorage prefs,
   })  : _authenticationRepository = authenticationRepository,
         _prefs = prefs,
         super(key: key);
 
   final AuthenticationRepository _authenticationRepository;
-  final StreamingSharedPreferences _prefs;
+  final FlutterSecureStorage _prefs;
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider.value(

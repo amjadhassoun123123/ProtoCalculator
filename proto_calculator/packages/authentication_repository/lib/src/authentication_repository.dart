@@ -10,6 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:crypto/crypto.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:uuid/uuid.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
+import 'package:get/get.dart';
 
 /// {@template sign_up_with_email_and_password_failure}
 /// Thrown if during the sign up process if a failure occurs.
@@ -167,6 +171,8 @@ class AuthenticationRepository {
   final CacheClient _cache;
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final storage = const FlutterSecureStorage();
+  final FlutterSecureStorage _prefs = FlutterSecureStorage();
 
   /// Whether or not the current environment is web
   /// Should only be overriden for testing purposes. Otherwise,
@@ -241,16 +247,18 @@ class AuthenticationRepository {
       throw const LogInWithGoogleFailure();
     }
   }
-    /// Converts string to SHA256 format
+
+  /// Converts string to SHA256 format
   ///
   String sha256ofString(String input) {
     final bytes = utf8.encode(input);
     final digest = sha256.convert(bytes);
     return digest.toString();
   }
+
   /// Starts the Sign In with Apple Flow.
   ///
-  Future<void>  signInWithApple() async {
+  Future<void> signInWithApple() async {
     // To prevent replay attacks with the credential returned from Apple, we
     // include a nonce in the credential request. When signing in with
     // Firebase, the nonce in the id token returned by Apple, is expected to
@@ -276,17 +284,6 @@ class AuthenticationRepository {
     // not match the nonce in `appleCredential.identityToken`, sign in will fail.
     await _firebaseAuth.signInWithCredential(oauthCredential);
     _firebaseAuth.currentUser!;
-
-
-    // Navigator.of(context)
-    //     .push(MaterialPageRoute(builder: (context) => const CalculatorPage()));
-
-    // if (_firebaseAuth.currentUser!.displayName != null) {
-    //   name = _firebaseAuth.currentUser!.displayName!;
-    // }
-
-    // email = _firebaseAuth.currentUser!.email!;
-    // uid = _firebaseAuth.currentUser!.uid;
   }
 
   /// Signs in with the provided [email] and [password].
@@ -306,6 +303,16 @@ class AuthenticationRepository {
     } catch (_) {
       throw const LogInWithEmailAndPasswordFailure();
     }
+  }
+
+  Future<void> loginInAnon() async {
+    if (await storage.read(key: "uidAnon") == null) {
+      var uuid = const Uuid();
+      _prefs.write(key: "uid", value: uuid.v1());
+      await storage.write(key: "uidAnon", value: uuid.v1());
+    }
+    _firebaseAuth.signOut();
+    _googleSignIn.signOut();
   }
 
   /// Signs out the current user which will emit

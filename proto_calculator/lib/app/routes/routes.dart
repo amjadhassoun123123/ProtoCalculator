@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:proto_calculator/app/bloc/app_bloc.dart';
 import 'package:proto_calculator/calculate/view/calculator_page.dart';
