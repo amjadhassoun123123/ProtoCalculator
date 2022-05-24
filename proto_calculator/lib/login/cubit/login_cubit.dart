@@ -5,27 +5,26 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-
+import 'package:get_storage/get_storage.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._authenticationRepository) : super(const LoginState());
 
   final AuthenticationRepository _authenticationRepository;
-  final FlutterSecureStorage _prefs = const FlutterSecureStorage();
   final storage = const FlutterSecureStorage();
   Future<void> logInWithGoogle() async {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
       await _authenticationRepository.logInWithGoogle();
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
-      await _prefs.write(
+      await storage.write(
           key: "uid", value: _authenticationRepository.currentUser.id);
       final uid = await storage.read(key: "uid");
       if (uid != null) {
-        setupDatabase(uid);
+        await setupDatabase(uid);
       }
-      syncData();
+      await getPreference();
     } on LogInWithGoogleFailure catch (e) {
       emit(
         state.copyWith(
@@ -42,14 +41,14 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
       await _authenticationRepository.signInWithApple();
-      emit(state.copyWith(status: FormzStatus.submissionSuccess));
-      await _prefs.write(
+      await storage.write(
           key: "uid", value: _authenticationRepository.currentUser.id);
       final uid = await storage.read(key: "uid");
       if (uid != null) {
-        setupDatabase(uid);
+        await setupDatabase(uid);
       }
-      syncData();
+      await getPreference();
+      emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on Error catch (e) {
       emit(
         state.copyWith(
@@ -65,15 +64,16 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> loginInAnon() async {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     await _authenticationRepository.loginInAnon();
-    await _prefs.write(key: "uid", value: await _prefs.read(key: "uidAnon"));
+    await storage.write(key: "uid", value: await storage.read(key: "uidAnon"));
     final uid = await storage.read(key: "uid");
     if (uid != null) {
       setupDatabase(uid);
     }
+    await getPreference();
     emit(state.copyWith(status: FormzStatus.submissionSuccess));
   }
 
-  void syncData() async {
+  Future<void> syncData() async {
     FlutterSecureStorage storage = const FlutterSecureStorage();
     final anonUID = await storage.read(key: "uidAnon");
     final FirebaseFirestore db = FirebaseFirestore.instance;
@@ -86,20 +86,18 @@ class LoginCubit extends Cubit<LoginState> {
 
     await anonData.doc("calculations").get().then((value) async {
       var data = value.data();
-      if (data == null || data.isEmpty) {
-        return;
+      if (data != null || data!.isNotEmpty) {
+        await userData.doc("calculations").get();
+        await userData.doc("calculations").set(data, SetOptions(merge: true));
       }
-      await userData.doc("calculations").get();
-      await userData.doc("calculations").set(data, SetOptions(merge: true));
     });
 
     await anonData.doc("settings").get().then((value) async {
       var data = value.data();
-      if (data == null || data.isEmpty) {
-        return;
+      if (data != null || data!.isNotEmpty) {
+        await userData.doc("settings").get();
+        await userData.doc("settings").set(data, SetOptions(merge: true));
       }
-      await userData.doc("settings").get();
-      await userData.doc("settings").set(data, SetOptions(merge: true));
     });
 
     await db
@@ -110,7 +108,7 @@ class LoginCubit extends Cubit<LoginState> {
         .set({});
   }
 
-  void setupDatabase(String uid) async {
+  Future<void> setupDatabase(String uid) async {
     var db = FirebaseFirestore.instance;
     db.settings = const Settings(persistenceEnabled: true);
     final data = db.collection("Users").doc(uid);
@@ -119,7 +117,32 @@ class LoginCubit extends Cubit<LoginState> {
         data.set({});
         data.collection("profile").doc("calculations").set({});
         data.collection("profile").doc("settings").set({});
+        data.set(
+          {
+            "Mon": {"id": null, "time": null},
+            "Tue": {"id": null, "time": null},
+            "Wed": {"id": null, "time": null},
+            "Thu": {"id": null, "time": null},
+            "Fri": {"id": null, "time": null},
+            "Sat": {"id": null, "time": null},
+            "Sun": {"id": null, "time": null}
+          },
+        );
+        syncData();
       }
     });
+  }
+
+  Future<void> getPreference() async {
+    final FirebaseFirestore db = FirebaseFirestore.instance;
+    db.settings = const Settings(persistenceEnabled: true);
+    GetStorage box = GetStorage();
+    var a = await db
+        .collection("Users")
+        .doc(await storage.read(key: "uid"))
+        .collection("profile")
+        .doc("settings")
+        .get();
+    await box.write("light", a.data()!["light_mode"]);
   }
 }

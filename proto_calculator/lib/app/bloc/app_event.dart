@@ -7,7 +7,9 @@ abstract class AppEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class AppLogoutRequested extends AppEvent {}
+class AppLogoutRequested extends AppEvent {
+  get user => null;
+}
 
 class AppUserChanged extends AppEvent {
   @visibleForTesting

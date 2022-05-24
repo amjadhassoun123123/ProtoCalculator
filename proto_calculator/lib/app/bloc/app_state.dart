@@ -17,11 +17,12 @@ class AppState extends Equatable {
 
   const AppState.unauthenticated() : this._(status: AppStatus.unauthenticated);
 
-  const AppState.anon(User user) : this._(status: AppStatus.anon, user: user);
+  const AppState.anon(User user) : this._(status: AppStatus.authenticated, user: user);
 
   final AppStatus status;
   final User user;
 
   @override
   List<Object> get props => [status, user];
+
 }

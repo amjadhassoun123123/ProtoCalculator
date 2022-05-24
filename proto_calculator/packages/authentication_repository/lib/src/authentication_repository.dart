@@ -239,7 +239,6 @@ class AuthenticationRepository {
       }
 
       await _firebaseAuth.signInWithCredential(credential);
-
     } on FirebaseAuthException catch (e) {
       throw LogInWithGoogleFailure.fromCode(e.code);
     } catch (_) {
@@ -283,7 +282,6 @@ class AuthenticationRepository {
     // not match the nonce in `appleCredential.identityToken`, sign in will fail.
     await _firebaseAuth.signInWithCredential(oauthCredential);
     _firebaseAuth.currentUser!;
-
   }
 
   /// Signs in with the provided [email] and [password].
@@ -311,8 +309,6 @@ class AuthenticationRepository {
       await _prefs.write(key: "uid", value: uuid.v1());
       await storage.write(key: "uidAnon", value: uuid.v1());
     }
-    _firebaseAuth.signOut();
-    _googleSignIn.signOut();
   }
 
   /// Signs out the current user which will emit
@@ -329,8 +325,6 @@ class AuthenticationRepository {
       throw LogOutFailure();
     }
   }
-
-
 }
 
 extension on firebase_auth.User {
