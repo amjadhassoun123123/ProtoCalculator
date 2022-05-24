@@ -116,16 +116,14 @@ class LoginCubit extends Cubit<LoginState> {
       if (!value.exists) {
         data.set({});
         data.collection("profile").doc("calculations").set({});
-        data.collection("profile").doc("settings").set({});
+        data.collection("profile").doc("settings").set({
+          "light_mode" : false
+        });
         data.set(
           {
-            "Mon": {"id": null, "time": null},
-            "Tue": {"id": null, "time": null},
-            "Wed": {"id": null, "time": null},
-            "Thu": {"id": null, "time": null},
-            "Fri": {"id": null, "time": null},
-            "Sat": {"id": null, "time": null},
-            "Sun": {"id": null, "time": null}
+            "days" : ["Mon", "Wed", "Sun"],
+            "reminders" : true,
+            "time" : "9:00"
           },
         );
         syncData();

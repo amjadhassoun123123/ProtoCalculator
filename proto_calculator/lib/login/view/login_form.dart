@@ -34,13 +34,12 @@ class _LoginFormState extends State<LoginForm> {
               child: TextButton(
             onPressed: () {
               context.read<LoginCubit>().loginInAnon();
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return const CalculatorPage();
               }));
             },
             child: const Text("Sign in anonymously"),
           )),
-          
         ])));
   }
 }
