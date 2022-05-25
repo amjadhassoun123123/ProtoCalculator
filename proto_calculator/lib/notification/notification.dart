@@ -46,6 +46,15 @@ class NotificationAPI {
     String? payload,
     required DateTime scheduledDate,
   }) async {
+    _notifications.periodicallyShow(
+      id,
+      title,
+      body,
+      RepeatInterval.weekly,
+      await _notificationsDetails(),
+      payload: payload,
+      androidAllowWhileIdle: true,
+    );
     _notifications.zonedSchedule(
         id,
         title,
@@ -55,25 +64,15 @@ class NotificationAPI {
         payload: payload,
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime);
+            UILocalNotificationDateInterpretation.absoluteTime,
+            matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime);
+
+            
   }
 
-  static Future showWeeklyNotification({
-    required int id,
-    String? title,
-    String? body,
-    String? payload,
-    required DateTime scheduledDate,
-  }) async {
-    _notifications.periodicallyShow(
-      id,
-      title,
-      body,
-      RepeatInterval.weekly,
-      await _notificationsDetails(),
-    );
-  }
-
-  static void cancel(int id) => _notifications.cancel(id);
-  static void cancelAll() => _notifications.cancelAll();
+  static Future<void> cancel(int id) async => await _notifications.cancel(id);
+  static Future<void> cancelAll() async => await _notifications.cancelAll();
+  // static Future<void> showPending() async {
+  //   print(await _notifications.pendingNotificationRequests().then((value) => value.forEach((element) {print(element.id has)})));
+  // }
 }

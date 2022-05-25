@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
 
 import 'dart:io';
-import 'dart:math';
-import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:timezone/data/latest.dart' as tz;
 import 'package:proto_calculator/settings/cubit/settings_cubit.dart';
 import 'package:provider/provider.dart';
 import 'package:authentication_repository/authentication_repository.dart';
@@ -62,9 +62,10 @@ class _MyStatefulWidgetState extends State<SettingsView> {
   @override
   void initState() {
     super.initState();
+    initializeDateFormatting('en', null);
+    tz.initializeTimeZones();
     NotificationAPI.init();
     getPreference();
-
     // listenNotifications();
   }
 // void listenNotifications () => NotificationAPI().onNotifications.stream.listen(onClickedNotification);
@@ -125,12 +126,13 @@ class _MyStatefulWidgetState extends State<SettingsView> {
                             onSelect: (values) {
                               // <== Callback to handle the selected days
                               setState(() {
-                                if (values.isEmpty){
+                                if (values.isEmpty) {
                                   reminderSwitch = false;
                                 }
                                 selectedDays.clear();
                                 selectedDays.addAll(values);
                                 setReminders();
+                                // NotificationAPI.showPending();
                               });
                             },
                           ),
@@ -145,8 +147,8 @@ class _MyStatefulWidgetState extends State<SettingsView> {
                                   onPressed: () => _showDialog(
                                         CupertinoDatePicker(
                                           mode: CupertinoDatePickerMode.time,
-                                          initialDateTime: selectedTime,
-                                          use24hFormat: false,
+                                          initialDateTime: DateTime.now(),
+                                          use24hFormat: true,
                                           onDateTimeChanged:
                                               (DateTime newTime) {
                                             setState(() {
@@ -192,9 +194,12 @@ class _MyStatefulWidgetState extends State<SettingsView> {
     });
     NotificationAPI.cancelAll();
     selectedDays.forEach((element) {
+      DateTime date = getNextDate(element, selectedTime);
+
       NotificationAPI.showScheduledNotification(
         id: getDay(element),
-        scheduledDate: selectedTime,
+        scheduledDate: date,
+        payload: date.toString(),
       );
     });
   }
@@ -217,17 +222,21 @@ class _MyStatefulWidgetState extends State<SettingsView> {
       lightSwitch = box.read("light");
       reminderSwitch = box.read("reminders");
       List<dynamic> days = a.data()!["days"];
-      selectedTime = DateFormat('h:m').parse(a.data()!["time"]);  
+
+      selectedTime = DateTime(
+          DateTime.now().year,
+          DateTime.now().month,
+          DateTime.now().day,
+          int.parse(a.data()!["time"].split(":")[0]),
+          int.parse(a.data()!["time"].split(":")[1]));
       selectedDays.addAll(days);
       _days.forEach((element) {
         if (days.contains(element.dayName)) {
           element.isSelected = true;
         }
-        
       });
     });
-
-    // setReminders();
+    setReminders();
   }
 
   Widget lightMode() {
@@ -308,5 +317,16 @@ class _MyStatefulWidgetState extends State<SettingsView> {
         return 7;
     }
     return -1;
+  }
+
+  //return the next day, so if you pass monday, give me the next monday in DateTime
+  DateTime getNextDate(String day, DateTime scheduledTime) {
+    var currDay = getDay(day);
+
+    while (scheduledTime.weekday != currDay) {
+      scheduledTime = scheduledTime.add(const Duration(days: 1));
+    }
+
+    return scheduledTime;
   }
 }
