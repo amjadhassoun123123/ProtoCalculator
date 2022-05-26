@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proto_calculator/calculate/cubit/calculator_cubit.dart';
+import 'package:proto_calculator/settings/cubit/settings_cubit.dart';
 import 'package:proto_calculator/settings/view/settings_view.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class CalculatorView extends StatefulWidget {
@@ -76,10 +78,15 @@ class _MyStatefulWidgetState extends State<CalculatorView> {
                 ),
                 ElevatedButton(
                     onPressed: (() {
+                      SettingsCubit settings =  SettingsCubit();
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) {
-                        return const SettingsView();
-                      }));
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => ListenableProvider(
+                            create: (context) => settings,
+                            builder: (context, child) => const SettingsView(),
+                          ),
+                        ),
+                      );
                     }),
                     child: const Text("Settings"))
               ],

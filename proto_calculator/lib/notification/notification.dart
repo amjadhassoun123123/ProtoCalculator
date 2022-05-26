@@ -46,15 +46,7 @@ class NotificationAPI {
     String? payload,
     required DateTime scheduledDate,
   }) async {
-    _notifications.periodicallyShow(
-      id,
-      title,
-      body,
-      RepeatInterval.weekly,
-      await _notificationsDetails(),
-      payload: payload,
-      androidAllowWhileIdle: true,
-    );
+    cancel(id);
     _notifications.zonedSchedule(
         id,
         title,
@@ -65,9 +57,7 @@ class NotificationAPI {
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
-            matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime);
-
-            
+            matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime);      
   }
 
   static Future<void> cancel(int id) async => await _notifications.cancel(id);
