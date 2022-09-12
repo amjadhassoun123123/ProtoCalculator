@@ -10,7 +10,8 @@ import 'app/view/app.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  
+  runApp(bob());
+  return;
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -22,5 +23,13 @@ Future<void> main() async {
   const prefs = FlutterSecureStorage();
   final authenticationRepository = AuthenticationRepository();
   await authenticationRepository.user.first;
+
   runApp(App(authenticationRepository: authenticationRepository, prefs: prefs));
+}
+
+MaterialApp bob() {
+  return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.red,),
+  );
 }

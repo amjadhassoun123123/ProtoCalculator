@@ -79,6 +79,7 @@ class _MyStatefulWidgetState extends State<CalculatorView> {
                 ElevatedButton(
                     onPressed: (() {
                       SettingsCubit settings =  SettingsCubit();
+                      settings.getPreference();
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) => ListenableProvider(

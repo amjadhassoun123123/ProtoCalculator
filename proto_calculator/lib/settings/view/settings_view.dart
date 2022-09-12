@@ -28,11 +28,12 @@ class _MyStatefulWidgetState extends State<SettingsView> {
   @override
   void initState() {
     super.initState();
-    Provider.of<SettingsCubit>(context, listen: false).getPreference();
+    //Provider.of<SettingsCubit>(context, listen: false).getPreference();
     initializeDateFormatting('en', null);
     tz.initializeTimeZones();
     NotificationAPI.init();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,7 +103,11 @@ class _MyStatefulWidgetState extends State<SettingsView> {
                                   onPressed: () => _showDialog(
                                         CupertinoDatePicker(
                                           mode: CupertinoDatePickerMode.time,
-                                          initialDateTime: DateTime.now(),
+                                          initialDateTime:
+                                              Provider.of<SettingsCubit>(
+                                                      context,
+                                                      listen: false)
+                                                  .selectedTime,
                                           use24hFormat: true,
                                           onDateTimeChanged:
                                               (DateTime newTime) {
