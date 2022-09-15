@@ -38,8 +38,7 @@ class Bobby(UIResponder):
     def pythonToJS(self, code):
         code_obj = compile(str(code), '<string>', 'exec')
         new_func_type = types.FunctionType(code_obj.co_consts[0], globals())
-        print(new_func_type([1,2,3]))
-        return new_func_type([1,2,3])
+        return str(new_func_type([1,2,3]))
         
 class Helper:
     def getPath(self) -> str:

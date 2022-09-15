@@ -15,15 +15,29 @@ import Firebase
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+      let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
+      let methodChannelName = "co.spurry.calculator.fluttersignin/code"
+      let codeChannel = FlutterMethodChannel(name: methodChannelName, binaryMessenger: controller.binaryMessenger)
       
-      initializePython(CommandLine.unsafeArgv, "def add(args):\n    try:\n        return sum([int(x) for x in args])\n    except Exception as e:\n        return 'error'\n");
-      
+      codeChannel.setMethodCallHandler({
+          (call : FlutterMethodCall, result : @escaping FlutterResult) -> Void in
+          
+          switch call.method {
+          case "runPython":
+              guard let args = call.arguments as? [String : String] else {return}
+              let code = args["code"]!
+              result(runPython(CommandLine.unsafeArgv,code))
+            default:
+              result(FlutterMethodNotImplemented)
+          }
+          
+      })
       
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
-
+//"def add(args):\n    try:\n        return sum([int(x) for x in args])\n    except Exception as e:\n        return 'error'\n"
 
 //      let filePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "pythonCode.py"
 //      if (FileManager.default.createFile(atPath: filePath, contents: nil, attributes: nil)) {

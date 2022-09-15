@@ -4,6 +4,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_storage/get_storage.dart';
 import 'app/view/app.dart';
@@ -11,6 +12,8 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   runApp(bob());
+  runPython(
+      "def add(args):\n    try:\n        return sum([int(x) for x in args])\n    except Exception as e:\n        return 'error'\n");
   return;
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,9 +30,16 @@ Future<void> main() async {
   runApp(App(authenticationRepository: authenticationRepository, prefs: prefs));
 }
 
+Future runPython(String code) async {
+  const channel = MethodChannel('co.spurry.calculator.fluttersignin/code');
+  String output = await channel.invokeMethod("runPython", {"code": code});
+  print("hey from dart i got" + output);
+}
+
 MaterialApp bob() {
   return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.red,),
+    home: Scaffold(
+      backgroundColor: Colors.red,
+    ),
   );
 }

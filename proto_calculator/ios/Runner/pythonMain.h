@@ -11,6 +11,6 @@
 #include <stdio.h>
 #include "pythonMain.h"
 
-void initializePython(char *argv[], NSString* code);
+NSString *runPython(char *argv[], NSString *code);
 
 #endif /* pythonMain_h */

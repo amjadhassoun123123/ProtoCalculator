@@ -12,7 +12,7 @@
 void crash_dialog(NSString *);
 NSString * format_traceback(PyObject *type, PyObject *value, PyObject *traceback);
 
-void initializePython(char *argv[], NSString* code){
+NSString *runPython(char *argv[], NSString *code){
     int ret = 0;
     PyStatus status;
     PyConfig config;
@@ -269,39 +269,9 @@ void initializePython(char *argv[], NSString* code){
                 // [1] http://beeware.org/rubicon
                 // [2] http://pyobjus.readthedocs.org/
                 // [3] https://pythonhosted.org/pyobjc/
-//                Class bobby = NSClassFromString(@"Bobby");
-//                NSString *bob = [bobby performSelector:NSSelectorFromString(@"function123:")];
-//                NSLog(@"%@ bob",bob);
-//                NSLog(@"%@ outputttt", [bobby performSelector:NSSelectorFromString(@"function123:")]);
-
-//
                 SEL methodToPerformSelector = NSSelectorFromString(@"pythonToJS");
-                [[[NSClassFromString(@"Bobby") alloc] init] performSelector: methodToPerformSelector withObject: code];
+                return [[[NSClassFromString(@"Bobby") alloc] init] performSelector: methodToPerformSelector withObject: code];
                 
-                
-                
-//                NSObject *classAPI = [[NSClassFromString(@"Bobby") alloc] init];
-//                SEL methodToPerformSelector = NSSelectorFromString(@"pythonToJS");
-//                NSMethodSignature *methodSignature = [classAPI methodSignatureForSelector:methodToPerformSelector];
-//                NSInvocation *myInvocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-//                [myInvocation setTarget:classAPI];
-//                [myInvocation setSelector:methodToPerformSelector];
-//
-//                /* if you have an argument */
-//                [myInvocation setArgument:code1 atIndex:0];
-//                [myInvocation retainArguments];
-//
-//                [myInvocation invoke];
-                
-//                NSMethodSignature *methodSignature = [classAPI methodSignatureForSelector:methodToPerformSelector];
-//                NSInvocation *myInvocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-//                [myInvocation setTarget:classAPI];
-//                [myInvocation setSelector:methodToPerformSelector];
-//                [myInvocation invoke];
-
-//
-//                UIApplicationMain(argc, argv, nil, @"FlutterAppDelegate");
-
             }
         }
         @catch (NSException *exception) {
@@ -315,6 +285,7 @@ void initializePython(char *argv[], NSString* code){
         PyMem_RawFree(wapp_module_name);
     }
 }
+
 /**
  * Convert a Python traceback object into a user-suitable string, stripping off
  * stack context that comes from this stub binary.
