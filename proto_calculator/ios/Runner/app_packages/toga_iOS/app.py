@@ -1,22 +1,57 @@
 import asyncio
 
+from jsbuilder import js
+from pscript import evalpy
 from rubicon.objc import SEL, objc_method
 from rubicon.objc.eventloop import EventLoopPolicy, iOSLifecycle
+import os
+import types
+import os.path
+import sys
+import tempfile
+from importlib.util import module_from_spec, spec_from_loader
+from types import ModuleType
+from typing import Any, Callable
 
 from toga_iOS.libs import (
     NSNotificationCenter,
     UIKeyboardFrameEndUserInfoKey,
     UIKeyboardWillHideNotification,
     UIKeyboardWillShowNotification,
-    UIResponder
+    UIResponder,
+    
 )
 from toga_iOS.window import Window
 
 
 class MainWindow(Window):
     pass
+  
 
-
+class Bobby(UIResponder):
+        
+#    @objc_method
+#    def pythonToJS(self) -> None:
+#        print(str(Helper().function123))
+    
+    @objc_method
+    def pythonToJS(self, code):
+        code_obj = compile(str(code), '<string>', 'exec')
+        new_func_type = types.FunctionType(code_obj.co_consts[0], globals())
+        print(new_func_type([1,2,3]))
+        return new_func_type([1,2,3])
+        
+class Helper:
+    def getPath(self) -> str:
+        return os.getcwd()
+        
+    @js
+    def function123(self) -> int:
+        x = 5
+        y = 10
+        z = 10 * 5
+        return z
+        
 class PythonAppDelegate(UIResponder):
     @objc_method
     def applicationDidBecomeActive_(self, application) -> None:
@@ -37,6 +72,7 @@ class PythonAppDelegate(UIResponder):
     @objc_method
     def application_didFinishLaunchingWithOptions_(self, application, launchOptions) -> bool:
         print("App finished launching.")
+        
         App.app.create()
 
         NSNotificationCenter.defaultCenter.addObserver(

@@ -17,19 +17,21 @@
 		0E29DA7A28C8082E004CF54E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E29DA7928C8082E004CF54E /* CoreGraphics.framework */; };
 		0E29DA7C28C80841004CF54E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E29DA7B28C80841004CF54E /* UIKit.framework */; };
 		0E29DA7E28C80846004CF54E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E29DA7D28C80846004CF54E /* WebKit.framework */; };
-		0E2A0C3528C672B4003D1416 /* app.py in Resources */ = {isa = PBXBuildFile; fileRef = 0E2A0C3428C672B3003D1416 /* app.py */; };
 		0E2A0C3728C674DF003D1416 /* app_packages in Resources */ = {isa = PBXBuildFile; fileRef = 0E2A0C3628C674DF003D1416 /* app_packages */; };
 		0E2A0C3928C675FD003D1416 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2A0C3828C675FD003D1416 /* main.m */; };
 		0E2A0C3B28C676C4003D1416 /* Support in Resources */ = {isa = PBXBuildFile; fileRef = 0E2A0C3A28C676C4003D1416 /* Support */; };
 		0E45E94A282C427700C90357 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E45E949282C427700C90357 /* GoogleService-Info.plist */; };
+		0E59EA4A28D389C600844CEB /* Python.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E59EA4928D389C600844CEB /* Python.xcframework */; };
 		0E7FD95B28CA4EAB001C90D2 /* Library in Resources */ = {isa = PBXBuildFile; fileRef = 0E7FD95A28CA4EAB001C90D2 /* Library */; };
 		0E7FD95D28CA531B001C90D2 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7FD95C28CA531B001C90D2 /* Utils.m */; };
-		0E8C9C7328CCF58700D2FE48 /* Python.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8C9C7228CCF58700D2FE48 /* Python.xcframework */; };
 		0ECA647B28C7B7EE00A61CA0 /* app in Resources */ = {isa = PBXBuildFile; fileRef = 0ECA647A28C7B7EE00A61CA0 /* app */; };
+		0ED7E86128D0E77D00495277 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED7E86028D0E77D00495277 /* AppDelegate.swift */; };
+		0ED7E86428D2932200495277 /* pythonMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ED7E86228D2932100495277 /* pythonMain.h */; };
+		0ED7E86728D295DD00495277 /* pythonMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED7E86628D295DC00495277 /* pythonMain.m */; };
+		0ED7E86928D2DE1C00495277 /* code.py in Resources */ = {isa = PBXBuildFile; fileRef = 0ED7E86828D2DE1C00495277 /* code.py */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		29C87C97E2B093F766C79D70 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF99D834AAC25C9D19E8E91 /* Pods_Runner.framework */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
-		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
@@ -49,25 +51,27 @@
 		0E29DA7928C8082E004CF54E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		0E29DA7B28C80841004CF54E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		0E29DA7D28C80846004CF54E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/iOSSupport/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
-		0E2A0C3428C672B3003D1416 /* app.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = app.py; sourceTree = "<group>"; };
 		0E2A0C3628C674DF003D1416 /* app_packages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app_packages; sourceTree = "<group>"; };
 		0E2A0C3828C675FD003D1416 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0E2A0C3A28C676C4003D1416 /* Support */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Support; path = "../../../../../beeware-tutorial/BeewareApp/iOS/Xcode/BeewareApp/Support"; sourceTree = "<group>"; };
 		0E2A0C3C28C6797D003D1416 /* Support */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Support; sourceTree = "<group>"; };
 		0E45E946282C404700C90357 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		0E45E949282C427700C90357 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0E59EA4928D389C600844CEB /* Python.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Python.xcframework; path = ../../../Support/Python.xcframework; sourceTree = "<group>"; };
 		0E7FD95A28CA4EAB001C90D2 /* Library */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Library; sourceTree = "<group>"; };
 		0E7FD95C28CA531B001C90D2 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		0E7FD95E28CA537A001C90D2 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		0E8C9C7228CCF58700D2FE48 /* Python.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Python.xcframework; path = Support/Python.xcframework; sourceTree = "<group>"; };
 		0ECA647A28C7B7EE00A61CA0 /* app */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app; sourceTree = "<group>"; };
+		0ED7E86028D0E77D00495277 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0ED7E86228D2932100495277 /* pythonMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pythonMain.h; sourceTree = "<group>"; };
+		0ED7E86628D295DC00495277 /* pythonMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pythonMain.m; sourceTree = "<group>"; };
+		0ED7E86828D2DE1C00495277 /* code.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = code.py; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		334200616EF2712442711C71 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		49C187835211154962053626 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
-		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		8DF99D834AAC25C9D19E8E91 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
@@ -92,7 +96,7 @@
 				0E29DA7628C80803004CF54E /* CoreFoundation.framework in Frameworks */,
 				0E29DA7C28C80841004CF54E /* UIKit.framework in Frameworks */,
 				0E29DA7E28C80846004CF54E /* WebKit.framework in Frameworks */,
-				0E8C9C7328CCF58700D2FE48 /* Python.xcframework in Frameworks */,
+				0E59EA4A28D389C600844CEB /* Python.xcframework in Frameworks */,
 				0E05F65F28C699D900B32D01 /* libsqlite3.tbd in Frameworks */,
 				0E29DA7828C80827004CF54E /* libz.tbd in Frameworks */,
 				0E29DA7A28C8082E004CF54E /* CoreGraphics.framework in Frameworks */,
@@ -106,11 +110,11 @@
 		1F3AEFC0357A7C63D636C10A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E59EA4928D389C600844CEB /* Python.xcframework */,
 				0E29DA7D28C80846004CF54E /* WebKit.framework */,
 				0E29DA7B28C80841004CF54E /* UIKit.framework */,
 				0E29DA7928C8082E004CF54E /* CoreGraphics.framework */,
 				0E29DA7728C80818004CF54E /* libz.tbd */,
-				0E8C9C7228CCF58700D2FE48 /* Python.xcframework */,
 				0E29DA7528C80803004CF54E /* CoreFoundation.framework */,
 				0E29DA6528C807A7004CF54E /* BZip2.xcframework */,
 				0E29DA6628C807A7004CF54E /* libFFI.xcframework */,
@@ -164,7 +168,6 @@
 			children = (
 				0ECA647A28C7B7EE00A61CA0 /* app */,
 				0E2A0C3628C674DF003D1416 /* app_packages */,
-				0E2A0C3428C672B3003D1416 /* app.py */,
 				0E45E946282C404700C90357 /* Runner.entitlements */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -172,11 +175,14 @@
 				97C147021CF9000F007C117D /* Info.plist */,
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
-				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 				0E2A0C3828C675FD003D1416 /* main.m */,
 				0E7FD95C28CA531B001C90D2 /* Utils.m */,
 				0E7FD95E28CA537A001C90D2 /* Utils.h */,
+				0ED7E86028D0E77D00495277 /* AppDelegate.swift */,
+				0ED7E86228D2932100495277 /* pythonMain.h */,
+				0ED7E86628D295DC00495277 /* pythonMain.m */,
+				0ED7E86828D2DE1C00495277 /* code.py */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -198,6 +204,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ED7E86428D2932200495277 /* pythonMain.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +229,8 @@
 			dependencies = (
 			);
 			name = Runner;
+			packageProductDependencies = (
+			);
 			productName = Runner;
 			productReference = 97C146EE1CF9000F007C117D /* Runner.app */;
 			productType = "com.apple.product-type.application";
@@ -250,6 +259,8 @@
 				Base,
 			);
 			mainGroup = 97C146E51CF9000F007C117D;
+			packageReferences = (
+			);
 			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -265,11 +276,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ECA647B28C7B7EE00A61CA0 /* app in Resources */,
-				0E2A0C3528C672B4003D1416 /* app.py in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				0E2A0C3728C674DF003D1416 /* app_packages in Resources */,
 				0E7FD95B28CA4EAB001C90D2 /* Library in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				0ED7E86928D2DE1C00495277 /* code.py in Resources */,
 				0E2A0C3B28C676C4003D1416 /* Support in Resources */,
 				0E45E94A282C427700C90357 /* GoogleService-Info.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
@@ -356,8 +367,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				0ED7E86128D0E77D00495277 /* AppDelegate.swift in Sources */,
 				0E2A0C3928C675FD003D1416 /* main.m in Sources */,
+				0ED7E86728D295DD00495277 /* pythonMain.m in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				0E7FD95D28CA531B001C90D2 /* Utils.m in Sources */,
 			);
@@ -435,6 +447,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -460,6 +473,47 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BoringSSL-GRPC/openssl_grpc.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth/FirebaseAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore/FirebaseCore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase/FirebaseDatabase.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/FirebaseFirestore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMAppAuth/GTMAppAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport/GoogleDataTransport.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleSignIn/GoogleSignIn.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Libuv-gRPC/uv.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/abseil/absl.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/cloud_firestore/cloud_firestore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/connectivity_plus/connectivity_plus.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/firebase_auth/firebase_auth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/firebase_core/firebase_core.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/firebase_database/firebase_database.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/flutter_local_notifications/flutter_local_notifications.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/flutter_secure_storage/flutter_secure_storage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/grpcpp.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-Core/grpc.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/google_sign_in_ios/google_sign_in_ios.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library/leveldb.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb/nanopb.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/path_provider_ios/path_provider_ios.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/shared_preferences_ios/shared_preferences_ios.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sign_in_with_apple/sign_in_with_apple.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/the_apple_sign_in/the_apple_sign_in.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					buil,
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -533,6 +587,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = YES;
@@ -590,6 +645,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -620,6 +676,47 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BoringSSL-GRPC/openssl_grpc.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth/FirebaseAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore/FirebaseCore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase/FirebaseDatabase.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/FirebaseFirestore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMAppAuth/GTMAppAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport/GoogleDataTransport.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleSignIn/GoogleSignIn.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Libuv-gRPC/uv.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/abseil/absl.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/cloud_firestore/cloud_firestore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/connectivity_plus/connectivity_plus.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/firebase_auth/firebase_auth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/firebase_core/firebase_core.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/firebase_database/firebase_database.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/flutter_local_notifications/flutter_local_notifications.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/flutter_secure_storage/flutter_secure_storage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/grpcpp.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-Core/grpc.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/google_sign_in_ios/google_sign_in_ios.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library/leveldb.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb/nanopb.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/path_provider_ios/path_provider_ios.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/shared_preferences_ios/shared_preferences_ios.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sign_in_with_apple/sign_in_with_apple.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/the_apple_sign_in/the_apple_sign_in.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					buil,
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -654,6 +751,47 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BoringSSL-GRPC/openssl_grpc.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth/FirebaseAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore/FirebaseCore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase/FirebaseDatabase.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/FirebaseFirestore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMAppAuth/GTMAppAuth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport/GoogleDataTransport.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleSignIn/GoogleSignIn.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Libuv-gRPC/uv.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/abseil/absl.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/cloud_firestore/cloud_firestore.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/connectivity_plus/connectivity_plus.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/firebase_auth/firebase_auth.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/firebase_core/firebase_core.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/firebase_database/firebase_database.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/flutter_local_notifications/flutter_local_notifications.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/flutter_secure_storage/flutter_secure_storage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/grpcpp.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-Core/grpc.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/google_sign_in_ios/google_sign_in_ios.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library/leveldb.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb/nanopb.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/path_provider_ios/path_provider_ios.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/shared_preferences_ios/shared_preferences_ios.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sign_in_with_apple/sign_in_with_apple.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/the_apple_sign_in/the_apple_sign_in.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					buil,
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
