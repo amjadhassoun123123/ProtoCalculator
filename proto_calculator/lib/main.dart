@@ -11,9 +11,9 @@ import 'app/view/app.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  runApp(bob());
-  runPython(
-      "def add(args):\n    try:\n        return sum([int(x) for x in args])\n    except Exception as e:\n        return 'error'\n");
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(bob(await runPython(
+      "def add(args):\n    try:\n        return sum([int(x) for x in args])\n    except Exception as e:\n        return 'error'\n")));
   return;
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,16 +30,20 @@ Future<void> main() async {
   runApp(App(authenticationRepository: authenticationRepository, prefs: prefs));
 }
 
-Future runPython(String code) async {
+Future<String> runPython(String code) async {
   const channel = MethodChannel('co.spurry.calculator.fluttersignin/code');
-  String output = await channel.invokeMethod("runPython", {"code": code});
-  print("hey from dart i got" + output);
+  return await channel.invokeMethod("runPython", {"code": code});
 }
 
-MaterialApp bob() {
+MaterialApp bob(String code) {
   return MaterialApp(
-    home: Scaffold(
-      backgroundColor: Colors.red,
-    ),
-  );
+      home: Scaffold(
+          backgroundColor: Colors.white,
+          body: Center(
+              child: Stack(children: [
+            SizedBox(
+              height: 50,
+            ),
+            Text("code output is:" + code, style: TextStyle(color: Colors.red))
+          ]))));
 }
